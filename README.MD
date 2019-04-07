@@ -7,15 +7,12 @@ This is a vanilla JS (ES6) web application to find various recipe details.
 
 Ways to run the App 
 
-1. npm run test 
-
-   This is the easiest way to view the app. It will open the development server automatically. When running development server Webpack will bundle the modules together but will not write it to a file on disk. It will automatically inject the bundle.js to the html. It is more or less streaming the files.
-2. npm run dev 
+1. npm run dev 
    This will do bundling and save on disk and wont minify files.
-3. npm run build 
-   This will do bundling and save on disk and will minify the files for dpeloyment on Production.
-4. npm run start
-   This is what i needed for me to deploy on heroku
+2. npm run build 
+   This will do bundling and save on disk and will minify the files for deployment on Production.
+3. npm run start
+   This is the easiest way to view the app. It will open the development server automatically. When running development server Webpack will bundle the modules together but will not write it to a file on disk. It will automatically inject the bundle.js to the html. It is more or less streaming the files.
    
 This app uses a configured webpack. 
 It uses babel and HtmlWebpackPlugin to bundle the files and inject the bundle.js/js file into the dist folder.
