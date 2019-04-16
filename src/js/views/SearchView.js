@@ -10,7 +10,7 @@ export const clearInput = () => {
 
 export const clearResult = () => {
   domElements.searchResultList.innerHTML = "";
-  domElements.searchPages.innerHTML ="";
+  domElements.searchPages.innerHTML = "";
 };
 
 const renderRecipe = recipe => {
@@ -49,12 +49,16 @@ export const limitRecipeTitle = (recipeTitle, limit = 17) => {
   return recipeTitle;
 };
 
-const createButton = (currPage,type) => {
+const createButton = (currPage, type) => {
   return `
-        <button class="btn-inline results__btn--${type}" data-goto="${type === 'prev' ? currPage-1 : currPage+1}">
-            <span>Page ${type === 'prev' ? currPage-1 : currPage+1}</span>
+        <button class="btn-inline results__btn--${type}" data-goto="${
+    type === "prev" ? currPage - 1 : currPage + 1
+  }">
+            <span>Page ${type === "prev" ? currPage - 1 : currPage + 1}</span>
             <svg class="search__icon">
-                <use href="img/icons.svg#icon-triangle-${type === 'prev' ? 'left' : 'right'}"></use>
+                <use href="img/icons.svg#icon-triangle-${
+                  type === "prev" ? "left" : "right"
+                }"></use>
             </svg>
         </button>
             `;
@@ -64,17 +68,17 @@ const renderButtons = (currPage, resultList, resPerPage) => {
   const totalPages = Math.ceil(resultList / resPerPage);
   let button;
   if (currPage == 1 && totalPages > 1) {
-    button=createButton(currPage,'next');
-  } 
-  else if (currPage == totalPages && totalPages > 1) {
-   button= createButton(currPage,'prev');
-  } 
-  else {
-   button= `${createButton(currPage,'prev')}
-            ${createButton(currPage,'next')}`;
+    button = createButton(currPage, "next");
+  } else if (currPage == totalPages && totalPages > 1) {
+    button = createButton(currPage, "prev");
+  } else if (totalPages == 1) {
+    console.log(totalPages);
+  } else {
+    button = `${createButton(currPage, "prev")}
+            ${createButton(currPage, "next")}`;
   }
 
-  domElements.searchPages.insertAdjacentHTML("afterbegin",button);
+  domElements.searchPages.insertAdjacentHTML("afterbegin", button);
 };
 
 export const renderResults = (recipeArr, page = 1, resultsPerPage = 10) => {
@@ -83,18 +87,17 @@ export const renderResults = (recipeArr, page = 1, resultsPerPage = 10) => {
 
   recipeArr.slice(start, end).forEach(renderRecipe);
 
-  renderButtons(page, recipeArr.length ,resultsPerPage);
+  renderButtons(page, recipeArr.length, resultsPerPage);
 
   //recipeArr.forEach(renderRecipe);
 };
 
+export const highlightSelected = id => {
+  const highlightArr = Array.from(document.querySelectorAll(".results__link"));
+  highlightArr.forEach(el => {
+    el.classList.remove("results__link--active");
+  });
 
-export const highlightSelected = (id) => {
-  const highlightArr = Array.from(document.querySelectorAll('.results__link'));
-  highlightArr.forEach((el)=>{
-    el.classList.remove('results__link--active');
-  })
-
-  const el=document.querySelector(`.results__link[href="#${id}"]`);
-  if(el) el.classList.add('results__link--active');
-}
+  const el = document.querySelector(`.results__link[href="#${id}"]`);
+  if (el) el.classList.add("results__link--active");
+};
