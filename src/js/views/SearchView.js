@@ -74,6 +74,7 @@ const renderButtons = (currPage, resultList, resPerPage) => {
     button = createButton(currPage, "prev");
   } else if (totalPages == 1) {
     showButton = false;
+    return;
   } else {
     button = `${createButton(currPage, "prev")}
             ${createButton(currPage, "next")}`;
