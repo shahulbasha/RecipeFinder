@@ -67,7 +67,7 @@ const createButton = (currPage, type) => {
 const renderButtons = (currPage, resultList, resPerPage) => {
   const totalPages = Math.ceil(resultList / resPerPage);
   if (totalPages != 1) {
-    let button;
+    let button = "";
     if (currPage == 1 && totalPages > 1) {
       button = createButton(currPage, "next");
     } else if (currPage == totalPages && totalPages > 1) {
