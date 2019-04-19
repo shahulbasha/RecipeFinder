@@ -66,7 +66,8 @@ const createButton = (currPage, type) => {
 
 const renderButtons = (currPage, resultList, resPerPage) => {
   const totalPages = Math.ceil(resultList / resPerPage);
-    let button = "";
+  let button = "";
+  if (totalPages > 1) {
     if (currPage == 1 && totalPages > 1) {
       button = createButton(currPage, "next");
     } else if (currPage == totalPages && totalPages > 1) {
@@ -76,6 +77,9 @@ const renderButtons = (currPage, resultList, resPerPage) => {
             ${createButton(currPage, "next")}`;
     }
     domElements.searchPages.insertAdjacentHTML("afterbegin", button);
+  } else if (totalPages == 1) {
+    domElements.searchPages.insertAdjacentHTML("afterbegin", "");
+  }
 };
 
 export const renderResults = (recipeArr, page = 1, resultsPerPage = 10) => {
